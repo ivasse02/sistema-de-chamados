@@ -1,0 +1,142 @@
+/* Cores do Tema INSS */
+:root {
+  --inss-blue: #02569b;
+  --inss-light-blue: #007bff;
+  --inss-gray: #f2f2f2;
+  --inss-white: #ffffff;
+  --inss-dark-gray: #333;
+}
+
+/* Estilo Geral da Página */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--inss-gray);
+  color: var(--inss-dark-gray);
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: var(--inss-blue);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: var(--inss-light-blue);
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--inss-light-blue);
+  padding-bottom: 5px;
+  margin-top: 40px;
+}
+
+/* Contêiner Principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Formulário de Criação */
+.form-container {
+  background-color: var(--inss-white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  text-align: left;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #013f6b;
+}
+
+/* Lista de Chamados */
+.lista-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.lista-chamados {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chamado-card {
+  background-color: var(--inss-white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.chamado-card h3 {
+  color: var(--inss-dark-gray);
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.chamado-card p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+/* Botão de Remover */
+.remover-btn {
+  background-color: #dc3545; /* Cor de perigo (vermelho) */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: background-color 0.3s;
+}
+
+.remover-btn:hover {
+  background-color: #c82333;
+}
