@@ -7,43 +7,48 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
-// Informa ao Spring que esta classe representa uma tabela
+// Anotação que define esta classe como uma entidade JPA,
+// mapeando-a para uma tabela no banco de dados com o mesmo nome.
 @Entity
 
-// gera automaticamente getters, setters, toString, equals e hashCode para todos os campos.
+// Anotação do Lombok que gera automaticamente getters, setters,
+// toString, equals e hashCode para a classe.
 @Data
 public class Chamado {
-    // --- Campos da Entidade (Colunas da Tabela) ---
 
-   // indica que este campo é a chave primária da tabela
+    // Define que este campo é a chave primária da tabela.
     @Id
 
-    // configura como o ID será gerado.
+    // Configura a estratégia de geração de valor para a chave primária,
+    // usando auto-incremento do banco de dados.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Define os campos simples que se tornarão colunas na tabela.
+    // Campos simples que se tornam colunas na tabela
     private String titulo;
-
     private String descricao;
+    private String status; // Exemplo: "Aberto", "Em Andamento", "Resolvido"
+    private String sistema; // Exemplo: "SAT", "PAT"
+    private String problema; // Exemplo: "indisponível", "lento"
 
-    private String status; // Ex: Aberto, Em Andamento, Fechado
+    // Anotação que mapeia este campo para um tipo de dado grande (CLOB)
+    // no banco de dados, adequado para textos longos.
+    @Lob
+    private String detalhesProblema;
 
-    // Novos campos para os dados do formulário
-    private String sistema; // Ex: SAT, PAT, MEU INSS
+    // Anotação do Hibernate que preenche automaticamente este campo
+    // com a data e hora de criação do registro.
+    @CreationTimestamp
 
-    private String problema; // Ex: indisponível, lento, outros
-
-    // Para textos longos que utilizam mais dados (Descrição do problema)
-    @Lob // Anotação para campos de texto longos
-    private String detalhesProblema; // Caixa de texto para "outros"
-
-    // Personaliza o nome da coluna no banco de dados
+    // Mapeia o nome da coluna no banco de dados para "data_criacao".
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
+    // Mapeia o nome da coluna no banco de dados para "data_fechamento".
+    // É preenchido pelo controlador quando o status muda para "Resolvido".
     @Column(name = "data_fechamento")
     private LocalDateTime dataFechamento;
 }
