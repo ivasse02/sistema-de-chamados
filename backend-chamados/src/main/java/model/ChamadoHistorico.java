@@ -1,36 +1,39 @@
 package com.seusistemadechamados.sistemachamados.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Entity
+@Table(name = "chamado_historico")
 public class ChamadoHistorico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // NOVO: Define um relacionamento de muitos-para-um com a entidade Chamado.
-    // Muitos registros de histórico podem pertencer a um único chamado.
-    @ManyToOne
-
-    // Especifica a coluna que será a chave estrangeira (foreign key)
-    // na tabela de histórico, ligando-a ao ID do chamado principal.
-    @JoinColumn(name = "chamado_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "chamado_id", nullable = false)
     private Chamado chamado;
+    // Relacionamento com o chamado ao qual esse histórico pertence
+    // Lazy fetch evita carregar o chamado completo a menos que seja necessário
 
-    // Campos que registram os dados da alteração.
-    private String statusAnterior;
-    private String novoStatus;
-    private LocalDateTime dataAlteracao;
+    private String statusAnterior; // Status antes da alteração
+    private String novoStatus; // Novo status após alteração
+    private LocalDateTime dataAlteracao; // Data/hora da mudança de status
 
-    // Getters e Setters
+    // ========================
+    // CONSTRUTOR
+    // ========================
+
+    public ChamadoHistorico() {
+        this.dataAlteracao = LocalDateTime.now();
+    }
+
+    // ========================
+    // GETTERS E SETTERS
+    // ========================
+    // Importante para persistência JPA e manipulação no serviço
+
     public Long getId() {
         return id;
     }

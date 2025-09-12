@@ -1,11 +1,37 @@
 package com.seusistemadechamados.sistemachamados.repository;
 
-// Importação do modelo Chamado
 import com.seusistemadechamados.sistemachamados.model.Chamado;
-
-//importação do JpaRepository
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// Camada que lida com a comunicação com o banco de dados. Estende JpaRepository
+import java.util.List;
+
+@Repository
 public interface ChamadoRepository extends JpaRepository<Chamado, Long> {
+
+    // ========================
+    // CONSULTA POR STATUS
+    // ========================
+
+    List<Chamado> findByStatus(String status);
+    // Retorna todos os chamados com o status especificado
+    // Útil para filtros no frontend (Aberto, Em Andamento, Resolvido)
+
+    // ========================
+    // BUSCA POR TERMO
+    // ========================
+
+    List<Chamado> findBySistemaContainingIgnoreCaseOrProblemaContainingIgnoreCaseOrDescricaoContainingIgnoreCase(String sistema, String problema, String descricao);
+    // Permite buscar chamados pelo sistema, problema ou descrição
+    // A busca ignora maiúsculas/minúsculas (ignore case)
+
+    // ========================
+    // CONTADORES
+    // ========================
+
+    long countByStatus(String status);
+    // Retorna a quantidade de chamados com determinado status
+
+    long count();
+    // Retorna a quantidade total de chamados
 }
