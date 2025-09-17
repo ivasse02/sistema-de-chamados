@@ -11,11 +11,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 // Anotação que define esta classe como uma entidade JPA,
-// mapeando-a para uma tabela no banco de dados com o mesmo nome.
 @Entity
 
 // Anotação do Lombok que gera automaticamente getters, setters,
-// toString, equals e hashCode para a classe.
 @Data
 public class Chamado {
 
@@ -35,7 +33,6 @@ public class Chamado {
     private String problema; // Exemplo: "indisponível", "lento"
 
     // Anotação que mapeia este campo para um tipo de dado grande (CLOB)
-    // no banco de dados, adequado para textos longos.
     @Lob
     private String detalhesProblema;
 

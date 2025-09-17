@@ -22,10 +22,8 @@ public class ChamadoService {
     @Autowired
     private ChamadoHistoricoRepository historicoRepository;
 
-    // ========================
-    // MÉTODOS DE BUSCA
-    // ========================
 
+    // MÉTODOS DE BUSCA
     public List<Chamado> getAllChamados() {
         return chamadoRepository.findAll();
     }
@@ -42,10 +40,8 @@ public class ChamadoService {
         return historicoRepository.findByChamadoId(chamadoId);
     }
 
-    // ========================
-    // CRIAÇÃO E ATUALIZAÇÃO
-    // =======================
 
+    // CRIAÇÃO E ATUALIZAÇÃO
     public Chamado createChamado(Chamado chamado) {
         return chamadoRepository.save(chamado);
     }
@@ -73,10 +69,8 @@ public class ChamadoService {
         }
     }
 
-    // ========================
-    // REMOÇÃO
-    // ========================
 
+    // REMOÇÃO
     @Transactional
     public void removerChamado(Long id) {
         historicoRepository.deleteByChamadoId(id);
@@ -89,16 +83,14 @@ public class ChamadoService {
         chamadoRepository.deleteAll();
     }
 
-    // ========================
-    // CONTADORES
-    // ========================
 
+    // CONTADORES
     public Map<String, Long> getChamadoCountsByStatus() {
         Map<String, Long> counts = new HashMap<>();
-        counts.put("Todos", chamadoRepository.count());
-        counts.put("Aberto", chamadoRepository.countByStatus("Aberto"));
-        counts.put("Em Andamento", chamadoRepository.countByStatus("Em Andamento"));
-        counts.put("Resolvido", chamadoRepository.countByStatus("Resolvido"));
+        counts.put("Todos", chamadoRepository.count());//Quantidade Todos os chamados
+        counts.put("Aberto", chamadoRepository.countByStatus("Aberto"));//Quantidade Aberto
+        counts.put("Em Andamento", chamadoRepository.countByStatus("Em Andamento"));//Quantidade Em andamento
+        counts.put("Resolvido", chamadoRepository.countByStatus("Resolvido")); //Quantidade Resolvido
         return counts;
     }
 }

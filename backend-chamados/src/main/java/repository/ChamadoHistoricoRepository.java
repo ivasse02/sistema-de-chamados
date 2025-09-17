@@ -10,14 +10,12 @@ import java.util.List;
 @Repository
 public interface ChamadoHistoricoRepository extends JpaRepository<ChamadoHistorico, Long> {
 
-    // ========================
+
     // CONSULTA POR CHAMADO
-    // ========================
     List<ChamadoHistorico> findByChamadoId(Long chamadoId);
 
-    // ========================
+
     // REMOÇÃO DE HISTÓRICO
-    // ========================
     @Transactional
     void deleteByChamadoId(Long chamadoId);
 }

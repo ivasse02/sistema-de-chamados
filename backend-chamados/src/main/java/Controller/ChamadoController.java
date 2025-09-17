@@ -18,10 +18,8 @@ public class ChamadoController {
     @Autowired
     private ChamadoService chamadoService; // Injeção do serviço que contém a lógica de negócios
 
-    // ========================
-    // BUSCA DE CHAMADOS
-    // ========================
 
+    // BUSCA DE CHAMADOS
     @GetMapping
     public List<Chamado> getAllChamados(@RequestParam(required = false) String status, @RequestParam(required = false) String termoBusca) {
         if (status != null && !status.isEmpty()) {
@@ -33,28 +31,22 @@ public class ChamadoController {
         return chamadoService.getAllChamados();
     }
 
-    // ========================
-    // CONTADORES DE STATUS
-    // ========================
 
+    // CONTADORES DE STATUS
     @GetMapping("/contadores")
     public Map<String, Long> getChamadoCounts() {
         return chamadoService.getChamadoCountsByStatus();
     }
 
-    // ========================
-    // HISTÓRICO DE CHAMADOS
-    // ========================
 
+    // HISTÓRICO DE CHAMADOS
     @GetMapping("/{id}/historico")
     public List<ChamadoHistorico> getHistoricoChamado(@PathVariable Long id) {
         return chamadoService.getHistoricoChamado(id);
     }
 
-    // ========================
-    // CRIAÇÃO E ATUALIZAÇÃO
-    // =======================
 
+    // CRIAÇÃO E ATUALIZAÇÃO
     @PostMapping
     public Chamado createChamado(@RequestBody Chamado chamado) {
         return chamadoService.createChamado(chamado);
@@ -65,10 +57,8 @@ public class ChamadoController {
         return chamadoService.updateChamado(id, chamadoDetails);
     }
 
-    // ========================
-    // REMOÇÃO
-    // ========================
 
+    // REMOÇÃO
     @DeleteMapping("/{id}")
     public void removerChamado(@PathVariable Long id) {
         chamadoService.removerChamado(id);

@@ -21,17 +21,14 @@ public class ChamadoHistorico {
     private String novoStatus; // Novo status após alteração
     private LocalDateTime dataAlteracao; // Data/hora da mudança de status
 
-    // ========================
-    // CONSTRUTOR
-    // ========================
 
+    // CONSTRUTOR
     public ChamadoHistorico() {
         this.dataAlteracao = LocalDateTime.now();
     }
 
-    // ========================
+
     // GETTERS E SETTERS
-    // ========================
     // Importante para persistência JPA e manipulação no serviço
 
     public Long getId() {
