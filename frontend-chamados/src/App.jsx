@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const API_BASE_URL = `http://${window.location.hostname}:8080/api/chamados`;
+const API_BASE_URL = `http://${window.location.hostname}:8081/api/chamados`;
 
 function App() {
   const [chamados, setChamados] = useState([]);
